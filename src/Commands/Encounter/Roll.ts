@@ -1,0 +1,1 @@
+// roll a die in encounter

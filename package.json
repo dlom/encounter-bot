@@ -1,0 +1,35 @@
+{
+  "name": "encounter-bot",
+  "version": "1.0.0",
+  "description": "Discord bot for running D&D encounters",
+  "main": "index.js",
+  "scripts": {
+    "install": "tsc",
+    "build": "tsc",
+    "watch": "tsc --watch"
+  },
+  "repository": {
+    "url": "https://github.com/dlom/encounter-bot",
+    "type": "git"
+  },
+  "author": "Mark Old <dlom234@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^11.1.0",
+    "discord.js-commando": "github:Gawdl3y/discord.js-commando#11.1",
+    "qs": "^6.5.0",
+    "request": "^2.81.0",
+    "socket.io-client": "^2.0.3",
+    "sqlite": "^2.7.0",
+    "typescript": "^2.4.2"
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.19",
+    "@types/qs": "^6.5.0",
+    "@types/request": "^2.0.1",
+    "@types/socket.io-client": "^1.4.29"
+  },
+  "engines": {
+    "node": ">=0.012.0"
+  }
+}

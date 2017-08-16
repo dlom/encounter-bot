@@ -1,0 +1,1 @@
+// kick player from encounter
