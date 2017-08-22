@@ -30,8 +30,8 @@ export class EncounterBot {
 			.registerCommandsIn(path.join(__dirname, "Commands"));
 	}
 
-    public start() {
+    public async start() {
         console.log("Starting EncounterBot...");
-        this.client.login(this.token);
+        return this.client.login(this.token);
     }
 }

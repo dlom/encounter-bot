@@ -3,5 +3,3 @@ const { token, owner }: { token: string, owner: string } = require("../settings.
 
 const bot = new EncounterBot(token, owner);
 bot.start();
-
-

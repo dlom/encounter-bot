@@ -1,7 +1,7 @@
 import { Command, CommandMessage, CommandoClient } from "discord.js-commando";
 import { GuildMember, RichEmbed } from "discord.js"
-import EncounterManager from "../../Encounter/EncounterManager";
-import PlayerManager from "../../Encounter/PlayerManager";
+import { EncounterManager  }from "../../Encounter/EncounterManager";
+import { PlayerManager } from "../../Encounter/PlayerManager";
 import { Encounter } from "../../Encounter/Encounter";
 
 export default class StartCommand extends Command {

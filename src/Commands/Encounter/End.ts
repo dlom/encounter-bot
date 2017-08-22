@@ -1,5 +1,5 @@
 import { Command, CommandMessage, CommandoClient } from "discord.js-commando";
-import EncounterManager from "../../Encounter/EncounterManager";
+import { EncounterManager } from "../../Encounter/EncounterManager";
 import { Encounter } from "../../Encounter/Encounter";
 
 export default class EndCommand extends Command {

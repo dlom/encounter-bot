@@ -58,4 +58,6 @@ class PlayerManager {
     }
 }
 
-export default new PlayerManager();
+const singleton = new PlayerManager();
+
+export { singleton as PlayerManager };

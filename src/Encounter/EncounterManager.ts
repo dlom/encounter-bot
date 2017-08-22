@@ -2,6 +2,8 @@ import { Snowflake, Collection, User, Guild } from "discord.js";
 import { Player } from "./Player";
 import { Encounter } from "./Encounter";
 
+// TODO: implement persistant storage
+
 class EncounterManager {
     private map: Map<Snowflake, Collection<string, Encounter>>;
 
@@ -14,7 +16,8 @@ class EncounterManager {
             this.map.set(guild.id, new Collection());
         }
         const c = this.map.get(guild.id);
-        const encounter = await new Encounter(guild, gm, players).start();
+        const encounter = new Encounter(guild, gm, players);
+        await encounter.start();
         c.set(encounter.id, encounter);
         return encounter;
     }
@@ -41,4 +44,6 @@ class EncounterManager {
     }
 }
 
-export default new EncounterManager();
+const singleton = new EncounterManager();
+
+export { singleton as EncounterManager };

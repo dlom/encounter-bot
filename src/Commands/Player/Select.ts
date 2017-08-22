@@ -1,5 +1,5 @@
 import { Command, CommandMessage, CommandoClient } from "discord.js-commando";
-import PlayerManager from "../../Encounter/PlayerManager";
+import { PlayerManager } from "../../Encounter/PlayerManager";
 import { StatBlock } from "../../Encounter/Player";
 
 export default class SelectCommand extends Command {

@@ -20,21 +20,21 @@ export class Encounter {
         this.socket = io.connect(api);
     }
 
-    public start(): Promise<Encounter> {
+    public start(): Promise<void> {
         if (this.encounterId != null) {
-            return Promise.resolve(this);
+            return Promise.resolve();
         }
 
         const target = `${api}/createencounter/`;
 
-        const promise = new Promise<Encounter>((resolve, reject) => {
+        const promise = new Promise<void>((resolve, reject) => {
             request.post(target, {
                 "json": true
             }, (error, response, body) => {
                 if (error) return reject(error);
                 if (response.statusCode !== 200) return reject("Unknown response from Improved Initiative");
                 this.encounterId = body.encounterId;
-                resolve(this);
+                resolve();
             });
         });
         return promise;
