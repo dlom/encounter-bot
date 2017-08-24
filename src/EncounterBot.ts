@@ -1,6 +1,9 @@
-import { CommandoClient, FriendlyError } from "discord.js-commando";
 import { Snowflake } from "discord.js";
+import { CommandoClient, FriendlyError } from "discord.js-commando";
 import * as path from "path"
+
+import { EncounterManager } from "./Encounter/EncounterManager";
+import { PlayerManager } from "./Encounter/PlayerManager";
 
 export class EncounterBot {
     private client: CommandoClient;

@@ -3,9 +3,7 @@ import { User, Snowflake, Collection, Guild, RichEmbed } from "discord.js";
 import * as io from "socket.io-client";
 import * as qs from "qs";
 import { Player, StatBlock } from "./Player"
-import { api, imageApi } from "../util"
-
-
+import { api, imageApi } from "../config"
 
 export class Encounter {
     private socket: SocketIOClient.Socket;
@@ -20,22 +18,33 @@ export class Encounter {
         this.socket = io.connect(api);
     }
 
-    public start(): Promise<void> {
+    public start(encounterId: string): Promise<void>;
+    public start(): Promise<void>
+    public start(suppliedEncounterId?: string): Promise<void> {
         if (this.encounterId != null) {
             return Promise.resolve();
         }
 
-        const target = `${api}/createencounter/`;
-
         const promise = new Promise<void>((resolve, reject) => {
-            request.post(target, {
-                "json": true
-            }, (error, response, body) => {
-                if (error) return reject(error);
-                if (response.statusCode !== 200) return reject("Unknown response from Improved Initiative");
-                this.encounterId = body.encounterId;
-                resolve();
-            });
+            if (suppliedEncounterId != null) {
+                if (this.encounterId != null) {
+                    reject(`Encounter already started with id '${this.encounterId}'`);
+                } else {
+                    this.encounterId = suppliedEncounterId;
+                    this.socket.emit("join encounter", this.encounterId);
+                    resolve();
+                }
+            } else {
+                request.post(`${api}/createencounter/`, {
+                    "json": true
+                }, (error, response, body) => {
+                    if (error) return reject(error);
+                    if (response.statusCode !== 200) return reject("Unknown response from Improved Initiative");
+                    this.encounterId = body.encounterId;
+                    this.socket.emit("join encounter", this.encounterId);
+                    resolve();
+                });
+            }
         });
         return promise;
     }

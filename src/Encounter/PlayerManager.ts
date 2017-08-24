@@ -1,4 +1,5 @@
 import { Snowflake, Collection, User, Guild } from "discord.js";
+
 import { Encounter } from "./Encounter";
 import { Player, StatBlock } from "./Player";
 
@@ -9,6 +10,7 @@ interface FatStatBlock {
 }
 
 class PlayerManager {
+    // [user: [fsb]]
     private collection: Collection<Snowflake, Collection<string, FatStatBlock>>;
 
     constructor() {

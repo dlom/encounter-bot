@@ -1,5 +1,5 @@
 import { EncounterBot } from "./EncounterBot";
-const { token, owner }: { token: string, owner: string } = require("../settings.json");
+import { token, owner } from "./config";
 
 const bot = new EncounterBot(token, owner);
 bot.start();
