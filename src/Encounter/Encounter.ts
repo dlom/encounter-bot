@@ -13,7 +13,7 @@ export class Encounter {
     constructor(private guild: Guild, private gm: User, players: Player[]) {
         this.players = new Collection();
         players.forEach((player) => {
-            this.players.set(player.user.id, player);
+            this.players.set(player.userId, player);
         });
         this.socket = io.connect(api);
     }

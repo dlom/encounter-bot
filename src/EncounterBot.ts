@@ -1,5 +1,6 @@
 import { Snowflake } from "discord.js";
-import { CommandoClient, FriendlyError } from "discord.js-commando";
+import { CommandoClient, FriendlyError, SQLiteProvider } from "discord.js-commando";
+import * as sqlite from "sqlite";
 import * as path from "path"
 
 import { EncounterManager } from "./Encounter/EncounterManager";
@@ -8,7 +9,7 @@ import { PlayerManager } from "./Encounter/PlayerManager";
 export class EncounterBot {
     private client: CommandoClient;
 
-    constructor(private token: string, owner: string) {
+    constructor(private token: string, owner: string, private db: string) {
         this.client = new CommandoClient({ owner });
         this.client
             .on("error", console.error)
@@ -35,6 +36,11 @@ export class EncounterBot {
 
     public async start() {
         console.log("Starting EncounterBot...");
-        return this.client.login(this.token);
+        const database = await sqlite.open(this.db);
+        const token = await this.client.login(this.token);
+        await this.client.setProvider(new SQLiteProvider(database));
+        await PlayerManager.init(database);
+        // TODO: await EncounterManager.init(database);
+        return token;
     }
 }

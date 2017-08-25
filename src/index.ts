@@ -1,5 +1,5 @@
 import { EncounterBot } from "./EncounterBot";
-import { token, owner } from "./config";
+import { token, owner, db } from "./config";
 
-const bot = new EncounterBot(token, owner);
+const bot = new EncounterBot(token, owner, db);
 bot.start();

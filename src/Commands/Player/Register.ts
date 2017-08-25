@@ -33,7 +33,7 @@ export default class RegisterCommand extends Command {
             if (statBlock.Name == null) {
                 return msg.reply(`${genericErrorMessage}: Property 'Name' missing`);
             }
-            PlayerManager.registerStatBlock(user, statBlock);
+            await PlayerManager.registerStatBlock(statBlock, user);
             return msg.reply(`Registered statblock '${statBlock.Name}'.  Remember to select this statblock in your guild!`);
         } catch(error) {
             return msg.reply(`${genericErrorMessage}: ${error.toString()}`)

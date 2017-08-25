@@ -28,8 +28,8 @@ export default class SelectCommand extends Command {
         const user = msg.author;
         const guild = msg.guild;
 
-        PlayerManager.selectStatBlock(guild, user, args.name);
+        const statBlock = await PlayerManager.selectStatBlock(args.name, user, guild);
 
-        return msg.reply(`Selected '${args.name}' for you`);
+        return msg.reply(`Selected '${statBlock.Name}' for you`);
     }
 }

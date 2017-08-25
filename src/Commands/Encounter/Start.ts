@@ -38,13 +38,13 @@ export default class StartCommand extends Command {
             return msg.reply(`Some players are already in an encounter! Try again`);
         }
 
-        const players = await PlayerManager.getEncounterStatBlocks(guild, users);
+        const players = await PlayerManager.getEncounterStatBlocks(users, guild);
         const invalidPlayers = players.filter((player) => {
             return (player.statBlock == null);
         });
         if (invalidPlayers.length > 0) {
-            const invalidNames = invalidPlayers.map(player => player.user.username).join(", ");
-            return msg.say(`Aborting: The following players are missing statblocks: ${invalidNames}`);
+            const invalidMentions = invalidPlayers.map(player => `<@${player.userId}>`).join(", ");
+            return msg.say(`The following players are missing statblocks: ${invalidMentions}`);
         }
 
         const encounter = await EncounterManager.createEncounter(guild, gm, players);

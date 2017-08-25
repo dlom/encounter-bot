@@ -1,4 +1,4 @@
-import { User } from "discord.js";
+import { User, Snowflake } from "discord.js";
 
 export interface StatBlock {
     Name: string;
@@ -9,6 +9,7 @@ export interface StatBlock {
 }
 
 export interface Player {
-    readonly user: User;
+    readonly userId: Snowflake;
     readonly statBlock: StatBlock;
+    readonly guildId: Snowflake;
 }
