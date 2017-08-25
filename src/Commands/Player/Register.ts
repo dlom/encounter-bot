@@ -6,10 +6,11 @@ export default class RegisterCommand extends Command {
     constructor(client: CommandoClient) {
         super(client, {
             "name": "register",
+            "aliases": ["update"],
             "group": "player",
             "memberName": "register",
             "description": "Register a character for use in encounters",
-            "guildOnly": false,
+            "guildOnly": true,
             "args": [
                 {
                     "key": "data",
@@ -22,9 +23,9 @@ export default class RegisterCommand extends Command {
     }
 
     async run(msg: CommandMessage, args: { "data": string }) {
-        // TODO: register statblock to guild if ran inside guild
         // TODO: check if statblock with this name already exists
         const user = msg.author;
+        const guild = msg.guild;
         const genericErrorMessage = "There was an error parsing your data";
 
         const decoded = Buffer.from(args.data, "base64").toString("utf8");
@@ -33,10 +34,14 @@ export default class RegisterCommand extends Command {
             if (statBlock.Name == null) {
                 return msg.reply(`${genericErrorMessage}: Property 'Name' missing`);
             }
-            await PlayerManager.registerStatBlock(statBlock, user);
-            return msg.reply(`Registered statblock '${statBlock.Name}'.  Remember to select this statblock in your guild!`);
+            await PlayerManager.registerStatBlock(statBlock, user, guild);
+            return msg.reply(`Registered statblock '${statBlock.Name}' for '${guild.name}'`);
         } catch(error) {
-            return msg.reply(`${genericErrorMessage}: ${error.toString()}`)
+            if (error instanceof SyntaxError) {
+                return msg.reply(`${genericErrorMessage}: ${error.toString()}`)
+            } else {
+                throw error;
+            }
         }
     }
 }

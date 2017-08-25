@@ -8,7 +8,7 @@ import { Player, StatBlock } from "./Player";
 interface StatBlockRow {
     owner: Snowflake;
     data: Buffer;
-    guild: Snowflake | null;
+    guild: Snowflake;
 }
 
 class PlayerManager {
@@ -16,7 +16,7 @@ class PlayerManager {
 
     public async init(db: Database): Promise<void> {
         this.db = db;
-        await this.db.run(`CREATE TABLE IF NOT EXISTS statblocks (owner TEXT NOT NULL, data BLOB NOT NULL, guild TEXT, UNIQUE (owner, guild))`);
+        await this.db.run(`CREATE TABLE IF NOT EXISTS statblocks (owner TEXT NOT NULL, data BLOB NOT NULL, guild TEXT NOT NULL, UNIQUE (owner, guild))`);
     }
 
     public async getEncounterStatBlocks(users: User[], guild: Guild): Promise<Player[]> {
@@ -46,25 +46,11 @@ class PlayerManager {
         return PlayerManager.rowToPlayer(row);
     }
 
-    public async registerStatBlock(statBlock: StatBlock | Buffer, user: User): Promise<Player>;
-    public async registerStatBlock(statBlock: StatBlock | Buffer, user: User, guild: Guild): Promise<Player>;
-    public async registerStatBlock(statBlock: StatBlock | Buffer, user: User, guild?: Guild): Promise<Player> {
+    public async registerStatBlock(statBlock: StatBlock | Buffer, user: User, guild: Guild): Promise<Player> {
         const statement = await this.db.prepare(`INSERT OR REPLACE INTO statblocks VALUES (?, ?, ?)`);
         const data = (Buffer.isBuffer(statBlock)) ? statBlock : Buffer.from(JSON.stringify(statBlock), "utf8");
-        const guildId = (guild != null) ? guild.id : null;
-        await statement.run([user.id, data, guildId]);
-        return PlayerManager.rowToPlayer({ owner: user.id, data, guild: guildId });
-    }
-
-    public async selectStatBlock(name: string, user: User, guild: Guild): Promise<StatBlock> {
-        const players = await this.getPlayers(user);
-        const player = players.find((player) => {
-            return player.statBlock.Name === name;
-        });
-        const statBlock = (player != null) ? player.statBlock : null;
-        if (statBlock == null) return null;
-        await this.registerStatBlock(statBlock, user, guild);
-        return statBlock;
+        await statement.run([user.id, data, guild.id]);
+        return PlayerManager.rowToPlayer({ owner: user.id, data, guild: guild.id });
     }
 
     private static parseStatBlock(data: Buffer): StatBlock {
