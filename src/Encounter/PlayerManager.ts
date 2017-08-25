@@ -40,7 +40,7 @@ class PlayerManager {
         return rows.map(row => PlayerManager.rowToPlayer(row));
     }
 
-    private async getPlayer(user: User, guild: Guild): Promise<Player> {
+    public async getPlayer(user: User, guild: Guild): Promise<Player> {
         const statement = await this.db.prepare(`SELECT * FROM statblocks WHERE owner = ? AND guild = ?`);
         const row: StatBlockRow = await statement.get([user.id, guild.id]);
         return PlayerManager.rowToPlayer(row);

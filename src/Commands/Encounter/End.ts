@@ -1,4 +1,5 @@
 import { Command, CommandMessage, CommandoClient } from "discord.js-commando";
+
 import { EncounterManager } from "../../Encounter/EncounterManager";
 import { Encounter } from "../../Encounter/Encounter";
 
@@ -13,18 +14,21 @@ export default class EndCommand extends Command {
             "guildOnly": true,
             "args": [
                 {
-                    "key": "force",
-                    "label": "confirm",
-                    "prompt": "are you sure you want to end the encounter?\n",
+                    "key": "confirm",
+                    "prompt": "Are you sure you want to end the encounter?\n",
                     "type": "boolean"
                 }
             ]
         });
     }
 
-    async run(msg: CommandMessage, args: { "force": boolean }) {
+    async run(msg: CommandMessage, args: { "confirm": boolean }) {
         const guild = msg.guild;
         const gm = msg.author;
+
+        if (!args.confirm) {
+            return msg.reply(`Encounter not cancelled.  xD`);
+        }
 
         const existingEncounters = await EncounterManager.getEncountersFor(guild, gm, true);
         if (existingEncounters.length < 1) {

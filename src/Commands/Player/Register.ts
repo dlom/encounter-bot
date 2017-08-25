@@ -1,6 +1,8 @@
 import { Command, CommandMessage, CommandoClient } from "discord.js-commando";
+
 import { PlayerManager } from "../../Encounter/PlayerManager";
 import { StatBlock } from "../../Encounter/Player";
+import * as Util from "../Util";
 
 export default class RegisterCommand extends Command {
     constructor(client: CommandoClient) {
@@ -26,22 +28,17 @@ export default class RegisterCommand extends Command {
         // TODO: check if statblock with this name already exists
         const user = msg.author;
         const guild = msg.guild;
-        const genericErrorMessage = "There was an error parsing your data";
 
-        const decoded = Buffer.from(args.data, "base64").toString("utf8");
-        try {
-            const statBlock: StatBlock = JSON.parse(decoded);
-            if (statBlock.Name == null) {
-                return msg.reply(`${genericErrorMessage}: Property 'Name' missing`);
-            }
-            await PlayerManager.registerStatBlock(statBlock, user, guild);
-            return msg.reply(`Registered statblock '${statBlock.Name}' for '${guild.name}'`);
-        } catch(error) {
-            if (error instanceof SyntaxError) {
-                return msg.reply(`${genericErrorMessage}: ${error.toString()}`)
-            } else {
-                throw error;
+        const player = await PlayerManager.getPlayer(user, guild);
+        if (player != null) {
+            const overwriteMessage = `Statblock ${player.statBlock.Name} already exists.  Overwrite?`;
+            if (!await Util.confirm(msg, overwriteMessage)) {
+                return msg.reply(`Cancelled.`);
             }
         }
+
+        const data = Buffer.from(args.data, "base64");
+        const newPlayer = await PlayerManager.registerStatBlock(data, user, guild);
+        return msg.reply(`Registered statblock '${newPlayer.statBlock.Name}' for '${guild.name}'`);
     }
 }
