@@ -1,6 +1,6 @@
 import { ArgumentCollector, CommandMessage } from "discord.js-commando";
 
-let confirm = async function(msg: CommandMessage, prompt: string, timeout?: number): Promise<boolean> {
+const confirm = async function(msg: CommandMessage, prompt: string, timeout?: number): Promise<boolean> {
     const key = "confirm";
     const ac = new ArgumentCollector(msg.client, [{
         "key": key,

@@ -2,13 +2,13 @@ import { Command, CommandMessage, CommandoClient } from "discord.js-commando";
 
 import { PlayerManager } from "../../Encounter/PlayerManager";
 import { StatBlock } from "../../Encounter/Player";
-import * as Util from "../Util";
+import * as Util from "../../Util";
 
 export default class RegisterCommand extends Command {
     constructor(client: CommandoClient) {
         super(client, {
             "name": "register",
-            "aliases": ["update"],
+            "aliases": ["update", "select"],
             "group": "player",
             "memberName": "register",
             "description": "Register a character for use in encounters",
