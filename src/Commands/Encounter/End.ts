@@ -34,7 +34,7 @@ export default class EndCommand extends Command {
         if (existingEncounters.length < 1) {
             return msg.reply(`You aren't currently leading an encounter! Sorry xD`);
         }
-        EncounterManager.removeEncounter(guild, existingEncounters[0]);
+        EncounterManager.endEncounter(guild, existingEncounters[0]);
         return msg.reply(`The encounter was destroyed.  Have a great day.`);
     }
 }

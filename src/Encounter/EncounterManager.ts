@@ -13,7 +13,7 @@ class EncounterManager {
         this.collection = new Collection();
     }
 
-    public async createEncounter(guild: Guild, gm: User, players: Player[]) {
+    public async startEncounter(guild: Guild, gm: User, players: Player[]): Promise<Encounter> {
         if (!this.collection.has(guild.id)) {
             this.collection.set(guild.id, new Collection());
         }
@@ -24,7 +24,7 @@ class EncounterManager {
         return encounter;
     }
 
-    public removeEncounter(guild: Guild, encounter: Encounter) {
+    public endEncounter(guild: Guild, encounter: Encounter) {
         encounter.stop();
         if (!this.collection.has(guild.id)) return;
         const c = this.collection.get(guild.id);

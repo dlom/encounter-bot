@@ -48,7 +48,7 @@ export default class StartCommand extends Command {
             return msg.say(`The following players are missing statblocks: ${invalidMentions}`);
         }
 
-        const encounter = await EncounterManager.createEncounter(guild, gm, players);
+        const encounter = await EncounterManager.startEncounter(guild, gm, players);
 
         const gmEmbed = encounter.getGmEmbed();
         const playerEmbed = encounter.getPlayerEmbed();

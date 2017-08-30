@@ -17,6 +17,7 @@ export default class ListCommand extends Command {
     async run(msg: CommandMessage) {
         const user = msg.author;
 
+        // TODO: improve
         const players = await PlayerManager.getPlayers(user);
         const embed = new RichEmbed().setColor(0x00643C);
         players.forEach((player) => {

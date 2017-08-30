@@ -1,7 +1,8 @@
-import * as request from "request";
 import { User, Snowflake, Collection, Guild, RichEmbed } from "discord.js";
+import * as request from "request";
 import * as io from "socket.io-client";
 import * as qs from "qs";
+
 import { Player, StatBlock } from "./Player"
 import { api, imageApi } from "../config"
 
@@ -25,27 +26,25 @@ export class Encounter {
             return Promise.resolve();
         }
 
-        const promise = new Promise<void>((resolve, reject) => {
+        const promise = new Promise<string>((resolve, reject) => {
+            if (this.encounterId != null) {
+                return reject(`Encounter already started with id '${this.encounterId}'`);
+            }
             if (suppliedEncounterId != null) {
-                if (this.encounterId != null) {
-                    reject(`Encounter already started with id '${this.encounterId}'`);
-                } else {
-                    this.encounterId = suppliedEncounterId;
-                    this.socket.emit("join encounter", this.encounterId);
-                    resolve();
-                }
+                resolve(suppliedEncounterId);
             } else {
                 request.post(`${api}/createencounter/`, {
                     "json": true
                 }, (error, response, body) => {
                     if (error) return reject(error);
                     if (response.statusCode !== 200) return reject("Unknown response from Improved Initiative");
-                    this.encounterId = body.encounterId;
-                    this.socket.emit("join encounter", this.encounterId);
-                    resolve();
+                    resolve(body.encounterId);
                 });
             }
-        });
+        }).then((encounterId) => {
+            this.encounterId = encounterId;
+            this.socket.emit("join encounter", this.encounterId);
+        })
         return promise;
     }
 
