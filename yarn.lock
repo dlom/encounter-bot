@@ -9,8 +9,8 @@
     "@types/node" "*"
 
 "@types/node@*", "@types/node@^8.0.24":
-  version "8.0.25"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.25.tgz#66ecaf4df93f5281b48427ee96fbcdfc4f0cdce1"
+  version "8.0.26"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.26.tgz#4d58be925306fd22b1141085535a0268b8beb189"
 
 "@types/qs@^6.5.0":
   version "6.5.0"
@@ -188,8 +188,8 @@ console-control-strings@^1.0.0, console-control-strings@~1.1.0:
   resolved "https://registry.yarnpkg.com/console-control-strings/-/console-control-strings-1.1.0.tgz#3d7cf4464db6446ea644bf4b39507f9851008e8e"
 
 core-js@^2.4.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.0.tgz#569c050918be6486b3837552028ae0466b717086"
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.1.tgz#ae6874dc66937789b80754ff5428df66819ca50b"
 
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
@@ -225,23 +225,23 @@ delegates@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/delegates/-/delegates-1.0.0.tgz#84c6e159b81904fdca59a0ef44cd870d31250f9a"
 
-"discord.js-commando@github:Gawdl3y/discord.js-commando#11.1":
+"discord.js-commando@github:Gawdl3y/discord.js-commando#11.2":
   version "0.9.0"
-  resolved "https://codeload.github.com/Gawdl3y/discord.js-commando/tar.gz/068fc399fbac9806d0d0993e79fe1fd4b39194cf"
+  resolved "https://codeload.github.com/Gawdl3y/discord.js-commando/tar.gz/821e0ada2165a7329477403355108f55408296e9"
   dependencies:
     common-tags "^1.0.0"
     escape-string-regexp "^1.0.0"
     require-all "^2.0.0"
 
-discord.js@^11.1.0:
-  version "11.1.0"
-  resolved "https://registry.yarnpkg.com/discord.js/-/discord.js-11.1.0.tgz#5351d59e3798f536de1975e92cae4d11af3d9266"
+discord.js@^11.2.1:
+  version "11.2.1"
+  resolved "https://registry.yarnpkg.com/discord.js/-/discord.js-11.2.1.tgz#bfc0f5a8b6398dc372d026e503592646456053fc"
   dependencies:
     long "^3.2.0"
     prism-media "^0.0.1"
-    snekfetch "^3.1.0"
-    tweetnacl "^0.14.0"
-    ws "^2.0.0"
+    snekfetch "^3.3.0"
+    tweetnacl "^1.0.0"
+    ws "^3.1.0"
 
 ecc-jsbn@~0.1.1:
   version "0.1.1"
@@ -477,15 +477,15 @@ long@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/long/-/long-3.2.0.tgz#d821b7138ca1cb581c172990ef14db200b5c474b"
 
-mime-db@~1.29.0:
-  version "1.29.0"
-  resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.29.0.tgz#48d26d235589651704ac5916ca06001914266878"
+mime-db@~1.30.0:
+  version "1.30.0"
+  resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.30.0.tgz#74c643da2dd9d6a45399963465b26d5ca7d71f01"
 
 mime-types@^2.1.12, mime-types@~2.1.7:
-  version "2.1.16"
-  resolved "https://registry.yarnpkg.com/mime-types/-/mime-types-2.1.16.tgz#2b858a52e5ecd516db897ac2be87487830698e23"
+  version "2.1.17"
+  resolved "https://registry.yarnpkg.com/mime-types/-/mime-types-2.1.17.tgz#09d7a393f03e995a79f8af857b70a9e0ab16557a"
   dependencies:
-    mime-db "~1.29.0"
+    mime-db "~1.30.0"
 
 minimatch@^3.0.0, minimatch@^3.0.4:
   version "3.0.4"
@@ -710,9 +710,9 @@ signal-exit@^3.0.0:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
 
-snekfetch@^3.1.0:
-  version "3.2.9"
-  resolved "https://registry.yarnpkg.com/snekfetch/-/snekfetch-3.2.9.tgz#cdd28c7e88c889d86b9ff289a8e985a2f484f206"
+snekfetch@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/snekfetch/-/snekfetch-3.3.0.tgz#97aa0d79d5920f18c26d4c8a7fddbe91205ad0fa"
 
 sntp@1.x.x:
   version "1.0.9"
@@ -839,13 +839,17 @@ tunnel-agent@^0.6.0:
   dependencies:
     safe-buffer "^5.0.1"
 
-tweetnacl@^0.14.0, tweetnacl@^0.14.3, tweetnacl@~0.14.0:
+tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   version "0.14.5"
   resolved "https://registry.yarnpkg.com/tweetnacl/-/tweetnacl-0.14.5.tgz#5ae68177f192d4456269d108afa93ff8743f4f64"
 
+tweetnacl@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/tweetnacl/-/tweetnacl-1.0.0.tgz#713d8b818da42068740bf68386d0479e66fc8a7b"
+
 typescript@^2.5.1:
-  version "2.5.1"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.5.1.tgz#ce7cc93ada3de19475cc9d17e3adea7aee1832aa"
+  version "2.5.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.5.2.tgz#038a95f7d9bbb420b1bf35ba31d4c5c1dd3ffe34"
 
 uid-number@^0.0.6:
   version "0.0.6"
@@ -881,7 +885,14 @@ wrappy@1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
 
-ws@^2.0.0, ws@~2.3.1:
+ws@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-3.1.0.tgz#8afafecdeab46d572e5397ee880739367aa2f41c"
+  dependencies:
+    safe-buffer "~5.1.0"
+    ultron "~1.1.0"
+
+ws@~2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/ws/-/ws-2.3.1.tgz#6b94b3e447cb6a363f785eaf94af6359e8e81c80"
   dependencies:
