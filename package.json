@@ -15,6 +15,7 @@
   "author": "Mark Old <dlom234@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "anydice": "^1.0.3",
     "discord.js": "^11.2.1",
     "discord.js-commando": "github:Gawdl3y/discord.js-commando#11.2",
     "qs": "^6.5.0",
