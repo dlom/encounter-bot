@@ -29,7 +29,8 @@ export class EncounterBot {
             .registerDefaults()
             .registerGroups([
                 ["encounter", "Encounter"],
-                ["player", "Player"]
+                ["player", "Player"],
+                ["roll", "Roll"]
             ])
             .registerCommandsIn(path.join(__dirname, "Commands"));
     }
